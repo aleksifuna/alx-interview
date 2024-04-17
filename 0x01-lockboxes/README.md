@@ -25,6 +25,8 @@ print(canUnlockAll(boxes))
 
 carrie@ubuntu:~/0x01-lockboxes$```
 
+### running it
+
 ```carrie@ubuntu:~/0x01-lockboxes$ ./main_0.py
 True
 True
