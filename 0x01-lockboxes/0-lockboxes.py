@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Supplies a function canUnlockAll"""
 
+
 def canUnlockAll(boxes):
     """checks if all lockboxes can be unlocked"""
     keys = [0]
@@ -9,7 +10,7 @@ def canUnlockAll(boxes):
     while True:
         if i >= len(keys):
             break
-        idx =keys[i]
+        idx = keys[i]
         for item in boxes[idx]:
             if item < len(boxes) and item not in keys:
                 keys.append(item)
