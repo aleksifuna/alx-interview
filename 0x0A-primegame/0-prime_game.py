@@ -8,9 +8,11 @@ def isWinner(x, nums):
     """
     computes and returns winner of most rounds
     """
-    if not isinstance(nums, list):
+    if x <= 0 or nums is None:
         return None
-    if len(nums) == 0:
+    if x != len(nums):
+        return None
+    if not isinstance(nums, list):
         return None
     Maria = 0
     Ben = 0
