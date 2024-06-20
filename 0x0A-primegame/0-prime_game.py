@@ -12,6 +12,8 @@ def isWinner(x, nums):
         return None
     Maria = 0
     Ben = 0
+    if len(nums) != x:
+        return None
     for i in range(x):
         primes = SieveOfEratosthenes(nums[i])
         if primes == 0:
