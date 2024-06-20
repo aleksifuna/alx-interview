@@ -8,11 +8,12 @@ def isWinner(x, nums):
     """
     computes and returns winner of most rounds
     """
+    if not isinstance(nums, list):
+        return None
     Maria = 0
     Ben = 0
-
-    for n in nums:
-        primes = SieveOfEratosthenes(n)
+    for i in range(x):
+        primes = SieveOfEratosthenes(nums[i])
         if primes == 0:
             Ben += 1
         elif primes % 2 == 0:
