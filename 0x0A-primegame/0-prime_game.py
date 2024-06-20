@@ -10,10 +10,10 @@ def isWinner(x, nums):
     """
     if not isinstance(nums, list):
         return None
+    if len(nums) == 0:
+        return None
     Maria = 0
     Ben = 0
-    if len(nums) != x:
-        return None
     for i in range(x):
         primes = SieveOfEratosthenes(nums[i])
         if primes == 0:
