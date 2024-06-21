@@ -10,39 +10,26 @@ def isWinner(x, nums):
     """
     if x < 1 or not nums:
         return None
-    if x != len(nums):
-        return None
-    if not isinstance(nums, list):
-        return None
-    Maria = 0
-    Ben = 0
-    value_list = SieveOfEratosthenes(max(nums))
-    for _, n in zip(range(x), nums):
-        primes = len(list(filter(lambda x: x, value_list[2: n])))
-        if primes == 0:
-            Ben += 1
-        elif primes % 2 == 0:
-            Maria += 1
+    ben_wins = 0
+    maria_wins = 0
+
+    n = max(nums)
+    value_list = [True for i in range(1, n + 1)]
+    value_list[0] = False
+    for i, is_prime in enumerate(value_list, 1):
+        if i == 1 or not is_prime:
+            continue
+        for j in range(i + i, n + 1, i):
+            value_list[j - 1] = False
+
+    for k, n in zip(range(x), nums):
+        primes = len(list(filter(lambda x: x, value_list[0: n])))
+        if primes % 2 == 0:
+            ben_wins += 1
         else:
-            Ben += 1
-    if Maria > Ben:
-        return 'Maria'
-    if Ben > Maria:
-        return 'Ben'
-    if Ben == Maria:
+            maria_wins += 1
+    if ben_wins == maria_wins:
         return None
-
-
-def SieveOfEratosthenes(n):
-    """
-    Counts the number of prime numbers upto including n
-    """
-    prime = [True for i in range(n + 1)]
-    p = 2
-    while (p * p <= n):
-        if prime[p]:
-            for i in range(p * p, n + 1, p):
-                prime[i] = False
-        p += 1
-
-    return prime
+    if maria_wins > ben_wins:
+        return 'Maria'
+    return 'Ben'
