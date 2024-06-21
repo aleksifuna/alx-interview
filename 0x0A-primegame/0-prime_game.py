@@ -8,7 +8,7 @@ def isWinner(x, nums):
     """
     computes and returns winner of most rounds
     """
-    if x <= 0 or nums is None:
+    if x < 1 or not nums:
         return None
     if x != len(nums):
         return None
@@ -16,8 +16,9 @@ def isWinner(x, nums):
         return None
     Maria = 0
     Ben = 0
-    for i in range(x):
-        primes = SieveOfEratosthenes(nums[i])
+    value_list = SieveOfEratosthenes(max(nums))
+    for _, n in zip(range(x), nums):
+        primes = len(list(filter(lambda x: x, value_list[2: n])))
         if primes == 0:
             Ben += 1
         elif primes % 2 == 0:
@@ -37,7 +38,6 @@ def SieveOfEratosthenes(n):
     Counts the number of prime numbers upto including n
     """
     prime = [True for i in range(n + 1)]
-    count = 0
     p = 2
     while (p * p <= n):
         if prime[p]:
@@ -45,7 +45,4 @@ def SieveOfEratosthenes(n):
                 prime[i] = False
         p += 1
 
-    for p in range(2, n + 1):
-        if prime[p]:
-            count += 1
-    return count
+    return prime
